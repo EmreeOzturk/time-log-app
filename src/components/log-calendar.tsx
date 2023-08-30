@@ -12,18 +12,21 @@ import {
 const LogCalendar = () => {
     const { getDaysInMonth } = useDateHelpers()
     console.log(getDaysInMonth())
-    const hours = [1, 2, 3, 4, 5, 6, 7, 8]
+    const hours = [0,1, 2, 3, 4, 5, 6, 7, 8]
 
     const getColor = (hour: number) => {
-        if (hour < 3) {
-            return 'bg-green-300'
-        } else if (hour < 6) {
-            return 'bg-green-500'
-        } else if (hour < 9) {
-            return 'bg-green-700'
-        } else {
-            return 'bg-green-900'
-        }
+        if (hour === 0) {
+            return 'bg-gray-100'
+        } else
+            if (hour < 3) {
+                return 'bg-green-200'
+            } else if (hour < 6) {
+                return 'bg-green-400'
+            } else if (hour < 9) {
+                return 'bg-green-600'
+            } else {
+                return 'bg-green-700'
+            }
     }
 
     return (
