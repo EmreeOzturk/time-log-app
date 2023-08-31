@@ -1,6 +1,17 @@
+"use client"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Button } from "../ui/button"
 import { IoTimer } from 'react-icons/io5'
+import { useRouter, usePathname } from "next/navigation";
 const Header = () => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const supabase = createClientComponentClient();
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        router.refresh();
+    };
+
     return (
         <header className="flex justify-between items-center">
             <div className="flex justify-center items-center gap-2">
@@ -11,9 +22,15 @@ const Header = () => {
                     <h1>Time Logger</h1>
                 </div>
             </div>
-            <div>
-                <Button className="w-28" variant="default">Logout</Button>
-            </div>
+            {
+                pathname !== '/auth' && (
+                    <div>
+                        <Button
+                            onClick={handleLogout}
+                            className="w-28" variant="default">Logout</Button>
+                    </div>
+                )
+            }
         </header>
     )
 }
