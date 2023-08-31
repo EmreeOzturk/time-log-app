@@ -29,10 +29,6 @@ const LogAdd = () => {
             throw new Error('Please fill in all fields')
         }
     }
-    const closeDialog = () => {
-        const btn = document?.getElementById('close-btn')
-        btn?.click();
-    }
     const submitLog = () => {
         try {
             validateLog()
@@ -50,13 +46,15 @@ const LogAdd = () => {
                 title: "Successfully create log",
                 description: `${log.hour} hours on ${dayjs(log.date).format('YYYY-MM-DD')} with note: ${log.note}`,
             })
-            closeDialog()
+
         } catch (e: any) {
             toast({
                 variant: "destructive",
                 title: "Fail to create log",
                 description: e.message,
             })
+        } finally {
+            document?.getElementById('close-btn')?.click();
         }
     }
     return (

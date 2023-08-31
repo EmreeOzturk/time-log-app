@@ -7,7 +7,6 @@ import {
 import { Button } from './ui/button'
 import { cn } from '@/lib/utils'
 import { GrCalendar } from 'react-icons/gr'
-import { useState } from "react"
 import { Calendar } from "./ui/calendar"
 import { format } from "date-fns"
 import { useLogStore } from "@/store"
@@ -15,6 +14,7 @@ import { SelectSingleEventHandler } from "react-day-picker"
 const DatePicker = () => {
     const log = useLogStore(state => state.log)
     const setDate = useLogStore(state => state.setDate)
+
     return (
         <Popover >
             <PopoverTrigger asChild className='w-full'>

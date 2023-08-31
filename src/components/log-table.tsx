@@ -12,7 +12,6 @@ import {
 import { useLogStore } from '@/store'
 const LogTable = () => {
     const logs = useLogStore(state => state.logs)
-    console.log(logs)
     return (
         <div className='border border-dashed border-slate-600 my-6 rounded-lg p-4'>
             <Table >

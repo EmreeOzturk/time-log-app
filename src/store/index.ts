@@ -1,15 +1,15 @@
 import { create } from "zustand";
-interface ILogState {
+type LogType = {
   note: string;
   hour: number;
   date: Date;
-}
+};
 type LogState = {
-  log: ILogState;
-  logs: { [key: string]: ILogState };
-  setLog: (log: ILogState) => void;
+  log: LogType;
+  logs: { [key: string]: LogType };
+  setLog: (log: LogType) => void;
   setDate: (date: Date) => void;
-  setLogs: (log: ILogState, key: string) => void;
+  setLogs: (log: LogType, key: string) => void;
 };
 
 export const useLogStore = create<LogState>()((set) => ({
@@ -19,7 +19,7 @@ export const useLogStore = create<LogState>()((set) => ({
     date: new Date(),
   },
   logs: {},
-  setLog: (log: ILogState) =>
+  setLog: (log: LogType) =>
     set((state) => ({
       log: {
         ...state.log,
@@ -33,7 +33,7 @@ export const useLogStore = create<LogState>()((set) => ({
         date,
       },
     })),
-  setLogs: (log: ILogState, key: string) =>
+  setLogs: (log: LogType, key: string) =>
     set((state) => ({
       logs: {
         ...state.logs,

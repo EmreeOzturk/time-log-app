@@ -28,7 +28,6 @@ const LogCalendar = () => {
                 return 'bg-green-700'
             }
     }
-    console.log(logs)
     return (
         <div className='flex justify-center items-center gap-3 rounded-md border border-slate-600 p-6 border-dashed'>
             <TooltipProvider delayDuration={200}>
@@ -55,7 +54,7 @@ const LogCalendar = () => {
                                         )
                                     }></TooltipTrigger>
                                     <TooltipContent>
-                                        {log?.hour} hours on {day}
+                                        {log?.hour || 0} hours on {day}
                                     </TooltipContent>
                                 </Tooltip>
                             </TooltipProvider>
