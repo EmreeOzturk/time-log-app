@@ -9,7 +9,10 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { useLogStore } from '@/store'
 const LogTable = () => {
+    const logs = useLogStore(state => state.logs)
+    console.log(logs)
     return (
         <div className='border border-dashed border-slate-600 my-6 rounded-lg p-4'>
             <Table >
@@ -22,11 +25,19 @@ const LogTable = () => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow>
-                        <TableCell className="font-medium">INV001</TableCell>
-                        <TableCell>Paid</TableCell>
-                        <TableCell>Credit Card</TableCell>
-                    </TableRow>
+                    {
+                        Object.keys(logs).map((key) => {
+                            const log = logs[key]
+                            return (
+                                <TableRow key={key}>
+                                    <TableCell>{log.date.toDateString()}</TableCell>
+                                    <TableCell>{log?.hour}</TableCell>
+                                    <TableCell>{log?.note}</TableCell>
+                                </TableRow>
+                            )
+                        }
+                        )
+                    }
                 </TableBody>
             </Table>
         </div>
